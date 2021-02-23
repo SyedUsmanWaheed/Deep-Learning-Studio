@@ -1,55 +1,89 @@
 <body class="theme-blush">
     <section class="content bg-white">
-      <div class="body_scroll">
-        <div class="block-header">
-          <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-              <h2>Data Visualization</h2>
-            </div>
-          </div>
-        </div>
-        <div class="container-fluid">
-          <div class="row clearfix">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="card project_list">
-                <div class="table-responsive">
-                    <div class="row col-6">
-                        <div class="col border-d active">
-                            <p>Bar Graph</p>
-                        </div>
-                        <div class="col border-d">
-                            <p>Scatter Plot</p>
-                        </div>
-                        <div class="col border-d">
-                            <p>Line Graph</p>
-                        </div>
+        <div class="body_scroll">
+            <div class="block-header">
+                <div class="row">
+                    <div class="col-lg-7 col-md-6 col-sm-12">
+                        <h2>Data Visualization</h2>
                     </div>
-                    <br>
-                    <div >
-                        <label for="column">Select the Columns:</label>
-                        <select class="drop" id="column" name="column" [(ngModel)]="model['x']">
-                            <option *ngFor="let item of columns" value="{{item}}">
-                                X: {{item}}
-                            </option>
-                        </select>
-                        <select class="drop" id="column" name="column" [(ngModel)]="model['y']">
-                            <option *ngFor="let item of columns" value="{{item}}">
-                                Y: {{item}}
-                            </option>
-                        </select>
-
-                    </div>
-                    <button (click)="createPlot()" type="button" class="btn btn-primary">Plot karsoo</button>
-                    <div *ngIf="image">
-                        <img src="{{image}}" />
-                    </div>
- 
+                    <div class="col-lg-5 col-md-6 col-sm-12">
+                        <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button" title="Next" >
+                            <i class="zmdi zmdi-arrow-right"></i>
+                        </button>
+                    </div> 
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </body>
+            <div class="container-fluid">
+                <div class="row clearfix">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="card project_list">
+                            <div class="table-responsive">
+                                <div class="row col-6">
+                                    <div style="cursor: pointer" [ngClass]="{'active': isBGVisible}" class="col border-d active">
+                                        <p  (click)="onBGClick()">Bar Graph</p>
+                                    </div>
+                                    <div style="cursor: pointer" [ngClass]="{'active': isSPVisible}" class="col border-d">
+                                        <p  (click)="onSPClick()">Scatter Plot</p>
+                                    </div>
+                                    <div style="cursor: pointer" [ngClass]="{'active': isLGVisible}" class="col border-d">
+                                        <p  (click)="onLGClick()">Line Graph</p> 
+                                    </div>
+                                </div>
+                                <br>
+                                <div *ngIf="isSPVisible">
+                                    <label for="column">Select the Columns for Scatter Plot:</label>
+                                    <select class="drop" id="column" name="column" [(ngModel)]="model['x']">
+                                        <option *ngFor="let item of columns" value="{{item}}">
+                                            X: {{item}}
+                                        </option>
+                                    </select>
+                                    <select class="drop" id="column" name="column" [(ngModel)]="model['y']">
+                                        <option *ngFor="let item of columns" value="{{item}}">
+                                            Y: {{item}}
+                                        </option>
+                                    </select> 
 
+                                </div>
+                                <div *ngIf="isLGVisible">
+                                    <label for="column">Select the Columns for Line Graph:</label>
+                                    <select class="drop" id="column" name="column" [(ngModel)]="model['x']">
+                                        <option *ngFor="let item of columns" value="{{item}}">
+                                            X: {{item}}
+                                        </option>
+                                    </select>
+                                    <select class="drop" id="column" name="column" [(ngModel)]="model['y']">
+                                        <option *ngFor="let item of columns" value="{{item}}">
+                                            Y: {{item}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <div *ngIf="isBGVisible">
+                                    <label for="column">Select the Column for bar Graph:</label>
+                                    <select class="drop" id="column" name="column" [(ngModel)]="model['x']">
+                                        <option *ngFor="let item of columns" value="{{item}}">
+                                            X: {{item}}
+                                        </option>
+                                    </select>
+                                    <select class="drop" id="column" name="column" [(ngModel)]="model['y']">
+                                        <option *ngFor="let item of columns" value="{{item}}">
+                                            Y: {{item}}
+                                        </option>
+                                    </select>
+
+                                </div>
+
+                                <button (click)="createPlot()" type="button" class="btn btn-primary">Plot
+                                    karsoo</button>
+                                <div *ngIf="image">
+                                    <img src="{{image}}" />
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
